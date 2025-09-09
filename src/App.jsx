@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import Login from './pages/login';
+import Login from './pages/Login';
 import Register from './pages/Register';
 import TreatmentList from './pages/TreatmentList';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -31,7 +31,6 @@ function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Router>
-       
       </ThemeProvider>
     </Provider>
   );
