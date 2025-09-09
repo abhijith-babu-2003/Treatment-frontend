@@ -1,8 +1,8 @@
-// redux/slices/authSlice.js
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import authApi from '../../api/authapi.js';
 
-// Async thunks
+
 export const login = createAsyncThunk(
   'auth/login',
   async ({ email, password }, { rejectWithValue }) => {

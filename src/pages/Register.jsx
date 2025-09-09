@@ -36,7 +36,7 @@ const Register = () => {
 
     if (register.fulfilled.match(resultAction)) {
       toast.success('Registration successful ');
-      navigate('/');
+      navigate('/login');
     } else if (register.rejected.match(resultAction)) {
       toast.error(resultAction.payload || 'Registration failed. Try again.');
     }

@@ -56,14 +56,18 @@ const TreatmentList = () => {
     handleClose();
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this treatment?')) {
-      dispatch(deleteTreatment(id))
-        .unwrap()
-        .catch(error => {
-          // Error is already handled in the slice
-          console.error('Delete error:', error);
-        });
+      try {
+        const resultAction = await dispatch(deleteTreatment(id));
+        if (deleteTreatment.fulfilled.match(resultAction)) {
+          toast.success('Treatment deleted successfully');
+        } else if (deleteTreatment.rejected.match(resultAction)) {
+          toast.error(resultAction.payload || 'Failed to delete treatment');
+        }
+      } catch (error) {
+        toast.error(error.message || 'An error occurred while deleting the treatment');
+      }
     }
   };
 

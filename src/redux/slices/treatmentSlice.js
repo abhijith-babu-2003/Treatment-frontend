@@ -43,15 +43,17 @@ export const addTreatment = createAsyncThunk(
 
 export const deleteTreatment = createAsyncThunk(
   'treatments/delete',
-  async (id, { rejectWithValue }) => {
+  async (id, { rejectWithValue, dispatch }) => {
     try {
       const response = await axios.delete(`${API_URL}/${id}`, getAuthHeaders());
-      if (response.data?.success) {
-        return id; // Return the ID of the deleted treatment
+      if (response.status === 200) {
+        toast.success('Treatment deleted successfully');
+        return id;
       }
-      throw new Error(response.data?.message || 'Failed to delete treatment');
+      throw new Error('Failed to delete treatment');
     } catch (error) {
-      const errorMessage = error.response?.data?.message || error.message || 'Failed to delete treatment';
+      const errorMessage = error.response?.data?.message || 'Failed to delete treatment';
+      toast.error(errorMessage);
       return rejectWithValue(errorMessage);
     }
   }
@@ -91,7 +93,6 @@ const treatmentSlice = createSlice({
         state.status = 'succeeded';
         state.items = state.items.filter(item => item._id !== action.payload);
         state.error = null;
-        toast.success('Treatment deleted successfully');
       })
       .addCase(deleteTreatment.rejected, (state, action) => {
         state.status = 'failed';

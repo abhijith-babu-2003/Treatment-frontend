@@ -7,7 +7,7 @@ import Login from './pages/login';
 import Register from './pages/Register';
 import TreatmentList from './pages/TreatmentList';
 import ProtectedRoute from './components/ProtectedRoute';
-import { Toaster } from 'react-hot-toast';
+
 
 const theme = createTheme();
 
@@ -31,7 +31,7 @@ function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Router>
-        <Toaster position="top-right" reverseOrder={false} />
+       
       </ThemeProvider>
     </Provider>
   );
