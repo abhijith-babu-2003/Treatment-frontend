@@ -73,6 +73,7 @@ const TreatmentList = () => {
 
   const handleLogout = () => {
     dispatch(logout());
+    toast.success('Logged out successfully');
     navigate('/login');
   };
 
@@ -144,11 +145,11 @@ const TreatmentList = () => {
         </div>
       </main>
 
-      {/* Add Treatment Modal */}
+  
       {open && (
         <div className="fixed inset-0 z-[9999] overflow-y-auto">
           <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            {/* Background overlay */}
+           
             <div 
               className="fixed inset-0 bg-black bg-opacity-50 transition-opacity" 
               aria-hidden="true"
@@ -253,9 +254,6 @@ const TreatmentList = () => {
                       />
                     </div>
                   </div>
-                  <div>
-                    <label htmlFor="notes" className="block text-sm font-medium text-gray-700">Notes</label>
-                  </div>
                 </div>
               </div>
               <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse gap-3">
@@ -279,7 +277,7 @@ const TreatmentList = () => {
           </div>
         </div>
       )}
-      <Toaster position="bottom-right" />
+      <Toaster position="top-right" />
     </div>
   );
 };
